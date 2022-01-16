@@ -5,12 +5,12 @@ package com.sysu.swfbackend.bean;
  */
 public class User {
 
-    private int id;
+    private Integer id;
     private String username; // 用户名
     private String password; // 密码
     private String email;    // 邮箱
     private String role;     // 角色
-    private boolean state;   // 状态
+    private Boolean state;   // 状态
 
     public User() {
     }

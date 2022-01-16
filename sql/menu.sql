@@ -14,7 +14,8 @@ CREATE TABLE `menu` (
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-INSERT INTO `menu` VALUES ('1', '资源管理', '/resource');
-INSERT INTO `menu` VALUES ('2', '实例管理', '/instance');
-INSERT INTO `menu` VALUES ('3', '质量管理', '/quality');
-INSERT INTO `menu` VALUES ('4', '租户管理', '/tenant');
+INSERT INTO `menu` VALUES ('1', '首页', '/welcome');
+INSERT INTO `menu` VALUES ('2', '资源管理', '/resource');
+INSERT INTO `menu` VALUES ('3', '实例管理', '/instance');
+INSERT INTO `menu` VALUES ('4', '质量管理', '/quality');
+INSERT INTO `menu` VALUES ('5', '租户管理', '/tenant');

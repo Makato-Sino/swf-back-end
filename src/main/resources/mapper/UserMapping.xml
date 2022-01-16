@@ -6,4 +6,40 @@
         SELECT * FROM user WHERE
         username = #{username} AND password = #{password} AND state = 1;
     </select>
+
+    <select id="getAllUsers" resultType="com.sysu.swfbackend.bean.User">
+        SELECT * FROM user
+        <if test = "username != null">
+            WHERE username LIKE #{username}
+        </if>
+        LIMIT #{pageStart}, #{pageSize}
+    </select>
+
+    <select id="getUsersCounts" resultType="java.lang.Integer">
+        SELECT count(*) FROM user
+        <if test="username != null">
+            WHERE username LIKE #{username}
+        </if>
+    </select>
+
+    <update id="updateState">
+        UPDATE user SET state = #{state} WHERE id = #{id}
+    </update>
+
+    <insert id="addUser">
+        INSERT INTO user (username,password,email,role,state)
+        VALUE (#{username},#{password},#{email},#{role},#{state})
+    </insert>
+
+    <delete id="deleteUser">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <select id="getUpdateUser" resultType="com.sysu.swfbackend.bean.User">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
+    <update id="editUser">
+        UPDATE user SET username = #{username}, password = #{password}, email = #{email} WHERE id = #{id}
+    </update>
 </mapper>

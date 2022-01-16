@@ -3,7 +3,7 @@ spring:
   datasource:
     #MySQL配置
     driverClassName:  com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cloud-swf?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/cloud-swf?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&nullCatalogMeansCurrent=true
     username: root
     password: root1234
 
@@ -12,3 +12,9 @@ mybatis:
   type-aliases-package: com.example.demo.model
 server:
   port: 9000
+
+# Activiti7配置
+activiti:
+#  history-level: full # 历史表
+  db-history-used: true
+  check-process-definitions: false # 关闭自动部署

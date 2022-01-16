@@ -47,6 +47,21 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.28</version>
         </dependency>
+
+        <!--Activiti7-->
+<!--        <dependency>-->
+<!--            <groupId>org.activiti</groupId>-->
+<!--            <artifactId>activiti-spring-boot-starter</artifactId>-->
+<!--            <version>7.1.0.M4</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.activiti.dependencies</groupId>
+            <artifactId>activiti-dependencies</artifactId>
+            <version>7.1.0.M4</version>
+            <type>pom</type>
+        </dependency>
+
     </dependencies>
 
     <build>
