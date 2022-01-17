@@ -16,5 +16,5 @@ server:
 # Activiti7配置
 activiti:
 #  history-level: full # 历史表
-  db-history-used: true
+#  db-history-used: true
   check-process-definitions: false # 关闭自动部署
