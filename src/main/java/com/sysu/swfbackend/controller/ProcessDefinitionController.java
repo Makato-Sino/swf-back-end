@@ -75,11 +75,11 @@ public class ProcessDefinitionController {
             List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().list();
             for (ProcessDefinition pd : list) {
                 HashMap<String, Object> hashMap = new HashMap<>();
-                hashMap.put("Name", pd.getName());
-                hashMap.put("Key", pd.getKey());
-                hashMap.put("ResourceName", pd.getResourceName());
-                hashMap.put("DeploymentID", pd.getDeploymentId());
-                hashMap.put("Version", pd.getVersion());
+                hashMap.put("name", pd.getName());
+                hashMap.put("key", pd.getKey());
+                hashMap.put("resourceName", pd.getResourceName());
+                hashMap.put("deploymentID", pd.getDeploymentId());
+                hashMap.put("version", pd.getVersion());
                 listMap.add(hashMap);
             }
             return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), "获取流程定义成功!", listMap);
