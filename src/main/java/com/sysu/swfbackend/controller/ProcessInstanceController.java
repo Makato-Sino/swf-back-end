@@ -1,7 +1,7 @@
 package com.sysu.swfbackend.controller;
 
 import com.sysu.swfbackend.SecurityUtil;
-import com.sysu.swfbackend.pojo.UserInfoBean;
+import com.sysu.swfbackend.bean.UserInfoBean;
 import com.sysu.swfbackend.util.AjaxResponse;
 import com.sysu.swfbackend.util.GlobalConfig;
 import org.activiti.api.model.shared.model.VariableInstance;
@@ -11,7 +11,6 @@ import org.activiti.api.process.runtime.ProcessRuntime;
 import org.activiti.api.runtime.shared.query.Page;
 import org.activiti.api.runtime.shared.query.Pageable;
 import org.activiti.engine.RepositoryService;
-import org.activiti.engine.repository.ProcessDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -5,7 +5,7 @@ package com.sysu.swfbackend.bean;
  */
 public class User {
 
-    private Integer id;
+    private Long id;
     private String name;     // 姓名
     private String address;    // 联系地址
     private String username; // 账号
@@ -23,7 +23,7 @@ public class User {
         this.roles = roles;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -47,7 +47,7 @@ public class User {
         return name;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
