@@ -18,6 +18,6 @@ CREATE TABLE `user` (
 -- 填充用户表
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'neocn', 'beijing', 'neo', '$2a$10$gw46pmsOVYO.smHYQ2jH.OoXoe.lGP8OStDkHNs/E74GqZDL5K7ki', 'ROLE_ACTIVITI_ADMIN');
-INSERT INTO `user` VALUES ('2', 'triniticn', 'shanghang', 'triniti', '$2a$10$gw46pmsOVYO.smHYQ2jH.OoXoe.lGP8OStDkHNs/E74GqZDL5K7ki', 'ROLE_ACTIVITI_USER,GROUP_activitiTeam,g_bajiewukong');
-INSERT INTO `user` VALUES ('3', 'sinocn', 'beijing', 'sino', '$2a$10$gw46pmsOVYO.smHYQ2jH.OoXoe.lGP8OStDkHNs/E74GqZDL5K7ki', 'ROLE_ACTIVITI_USER,GROUP_activitiTeam');
-INSERT INTO `user` VALUES ('4', 'theocn', 'beijing', 'theo', '$2a$10$gw46pmsOVYO.smHYQ2jH.OoXoe.lGP8OStDkHNs/E74GqZDL5K7ki', 'ROLE_ACTIVITI_USER,GROUP_activitiTeam');
+INSERT INTO `user` VALUES ('2', 'triniticn', 'shanghang', 'triniti', '$2a$10$gw46pmsOVYO.smHYQ2jH.OoXoe.lGP8OStDkHNs/E74GqZDL5K7ki', 'ROLE_ACTIVITI_USER');
+INSERT INTO `user` VALUES ('3', 'sinocn', 'beijing', 'sino', '$2a$10$gw46pmsOVYO.smHYQ2jH.OoXoe.lGP8OStDkHNs/E74GqZDL5K7ki', 'ROLE_ACTIVITI_USER');
+INSERT INTO `user` VALUES ('4', 'theocn', 'beijing', 'theo', '$2a$10$gw46pmsOVYO.smHYQ2jH.OoXoe.lGP8OStDkHNs/E74GqZDL5K7ki', 'ROLE_ACTIVITI_USER');

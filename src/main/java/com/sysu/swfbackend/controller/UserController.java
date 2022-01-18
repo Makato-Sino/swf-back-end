@@ -71,7 +71,7 @@ public class UserController {
     @PostMapping("/addUser")
     public AjaxResponse addUser(@RequestBody UserInfoBean userInfoBean) {
         try {
-            userInfoBean.setRoles("ROLE_ACTIVITI_USER,GROUP_activitiTeam");
+            userInfoBean.setRoles("ROLE_ACTIVITI_USER");
             String password = myUserDetailsService.passwordEncoder().encode(userInfoBean.getPassword());
             userInfoBean.setPassword(password);
             userDao.addUser(userInfoBean);
@@ -119,6 +119,7 @@ public class UserController {
     @RequestMapping("/editUser")
     public AjaxResponse editUser(@RequestBody UserInfoBean userInfoBean) {
         try {
+            userInfoBean.setRoles("ROLE_ACTIVITI_USER");
             String password = myUserDetailsService.passwordEncoder().encode(userInfoBean.getPassword());
             userInfoBean.setPassword(password);
             userDao.editUser(userInfoBean);
