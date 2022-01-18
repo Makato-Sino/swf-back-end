@@ -5,4 +5,8 @@
     <select id="getMenus" resultType="com.sysu.swfbackend.bean.Menu">
         SELECT * FROM `menu`;
     </select>
+    
+    <select id="getTenantMenus" resultType="com.sysu.swfbackend.bean.Menu">
+        SELECT * FROM `tenant_menu`;
+    </select>
 </mapper>

@@ -16,3 +16,6 @@ server:
 # Activiti7配置
 activiti:
   check-process-definitions: false # 关闭自动部署
+  # database-schema-update: true
+  # history-level: full
+  # db-history-used: true

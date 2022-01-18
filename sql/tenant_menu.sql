@@ -14,6 +14,6 @@ CREATE TABLE `tenant_menu` (
 -- ----------------------------
 -- Records of tenant_menu
 -- ----------------------------
-INSERT INTO `tenant_menu` VALUES ('1', '首页', '/welcome');
+INSERT INTO `tenant_menu` VALUES ('1', '首页', '/tenantwelcome');
 INSERT INTO `tenant_menu` VALUES ('2', '服务选购', '/purchase');
 INSERT INTO `tenant_menu` VALUES ('3', '查看订单', '/order');

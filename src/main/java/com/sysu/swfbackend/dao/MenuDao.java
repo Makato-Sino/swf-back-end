@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface MenuDao {
     public List<Menu> getMenus();
+    public List<Menu> getTenantMenus();
 }
