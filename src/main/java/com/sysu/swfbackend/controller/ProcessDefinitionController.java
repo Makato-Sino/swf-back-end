@@ -1,5 +1,7 @@
 package com.sysu.swfbackend.controller;
 
+import com.sysu.swfbackend.SecurityUtil;
+import com.sysu.swfbackend.bean.UserInfoBean;
 import com.sysu.swfbackend.util.AjaxResponse;
 import com.sysu.swfbackend.util.GlobalConfig;
 import org.activiti.engine.RepositoryService;
@@ -7,6 +9,7 @@ import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,16 +24,22 @@ import java.util.zip.ZipInputStream;
 public class ProcessDefinitionController {
 
     @Autowired
+    private SecurityUtil securityUtil;
+
+    @Autowired
     private RepositoryService repositoryService;
 
     /**
      * 上传BPMN文件并部署
+     * @param userInfoBean
      * @param multipartFile
      * @param processName
      * @return
      */
-    @PostMapping(value = "/uploadStreamAndDeployment")
-    public AjaxResponse uploadStreamAndDeployment(@RequestParam("processFile") MultipartFile multipartFile,
+//    @PostMapping(value = "/uploadStreamAndDeployment")
+    @RequestMapping(value = "/uploadStreamAndDeployment", method = RequestMethod.POST)
+    public AjaxResponse uploadStreamAndDeployment(@AuthenticationPrincipal UserInfoBean userInfoBean,
+                                                  @RequestParam("processFile") MultipartFile multipartFile,
                                                   @RequestParam("processName") String processName) {
         try {
             // 获取文件名
@@ -46,11 +55,13 @@ public class ProcessDefinitionController {
                 deployment = repositoryService.createDeployment()
                         .addZipInputStream(zip)
                         .name(processName)
+                        .tenantId(userInfoBean.getUsername())
                         .deploy();
             } else {
                 deployment = repositoryService.createDeployment()
                         .addInputStream(fileName, fileInputStream)
                         .name(processName)
+                        .tenantId(userInfoBean.getUsername())
                         .deploy();
             }
 
@@ -89,7 +100,7 @@ public class ProcessDefinitionController {
     }
 
     /**
-     * 获取流程部署列表
+     * 获取当前用户流程部署列表
      * @return
      */
     @GetMapping(value = "/getDeployments")
@@ -103,6 +114,7 @@ public class ProcessDefinitionController {
                 hashMap.put("Id", dep.getId());
                 hashMap.put("Name", dep.getName());
                 hashMap.put("DeploymentTime", dep.getDeploymentTime());
+                hashMap.put("Username", dep.getTenantId());
 //                hashMap.put("Key", dep.getKey());
                 listMap.add(hashMap);
             }
