@@ -6,21 +6,21 @@ package com.sysu.swfbackend.bean;
 public class User {
 
     private Integer id;
-    private String username; // 用户名
+    private String name;     // 姓名
+    private String address;    // 联系地址
+    private String username; // 账号
     private String password; // 密码
-    private String email;    // 邮箱
-    private String role;     // 角色
-    private Boolean state;   // 状态
+    private String roles;     // 角色
 
     public User() {
     }
 
-    public User(String username, String password, String email, String role, boolean state) {
+    public User(String name, String address, String username, String password, String roles) {
+        this.name = name;
+        this.address = address;
         this.username = username;
         this.password = password;
-        this.email = email;
-        this.role = role;
-        this.state = state;
+        this.roles = roles;
     }
 
     public int getId() {
@@ -35,16 +35,16 @@ public class User {
         return password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAddress() {
+        return address;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoles() {
+        return roles;
     }
 
-    public boolean getState() {
-        return state;
+    public String getName() {
+        return name;
     }
 
     public void setId(int id) {
@@ -59,27 +59,25 @@ public class User {
         this.password = password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
-    }
+    public void setName(String name) {this.name = name; }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                ", state=" + state +
+                ", roles='" + roles + '\'' +
                 '}';
     }
 }

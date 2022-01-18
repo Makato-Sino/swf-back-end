@@ -1,4 +1,4 @@
-package com.sysu.swfbackend.mapper;
+package com.sysu.swfbackend.dao;
 
 import com.sysu.swfbackend.pojo.UserInfoBean;
 import org.apache.ibatis.annotations.Mapper;

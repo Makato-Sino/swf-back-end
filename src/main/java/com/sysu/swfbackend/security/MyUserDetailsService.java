@@ -1,6 +1,6 @@
 package com.sysu.swfbackend.security;
 
-import com.sysu.swfbackend.mapper.UserInfoBeanMapper;
+import com.sysu.swfbackend.dao.UserInfoBeanMapper;
 import com.sysu.swfbackend.pojo.UserInfoBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

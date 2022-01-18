@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 //        }
 
 //@MapperScan("com.sysu.swfbackend.mapper")
+@MapperScan("com.sysu.swfbackend.dao")
 @SpringBootApplication()
 public class SwfBackEndApplication {
 

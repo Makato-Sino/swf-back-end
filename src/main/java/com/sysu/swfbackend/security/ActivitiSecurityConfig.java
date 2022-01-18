@@ -33,5 +33,8 @@ public class ActivitiSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .headers().frameOptions().disable();
+
+        //SpringSecurity配置跨域请求
+        http.cors();
     }
 }
