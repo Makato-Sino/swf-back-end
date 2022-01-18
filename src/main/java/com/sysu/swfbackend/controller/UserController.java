@@ -1,8 +1,6 @@
 package com.sysu.swfbackend.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.sysu.swfbackend.bean.QueryInfo;
-import com.sysu.swfbackend.bean.User;
 import com.sysu.swfbackend.bean.UserInfoBean;
 import com.sysu.swfbackend.dao.UserDao;
 import com.sysu.swfbackend.dao.UserInfoBeanMapper;
@@ -42,19 +40,22 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/alluser")
+    /**
+     * 获取分页用户信息
+     * @param queryInfo
+     * @return
+     */
+    @RequestMapping("/getUserList")
     public AjaxResponse getUserList(QueryInfo queryInfo) {
         try {
             // 获取最大页数及当前页号
             int numbers = userDao.getUsersCounts("%" + queryInfo.getQuery() + "%");
             int pageStart = (queryInfo.getPageNum() - 1) * queryInfo.getPageSize();
 
-            List<User> users = userDao.getAllUsers("%" + queryInfo.getQuery() + "%", pageStart, queryInfo.getPageSize());
+            List<UserInfoBean> users = userDao.getAllUsers("%" + queryInfo.getQuery() + "%", pageStart, queryInfo.getPageSize());
             HashMap<String, Object> res = new HashMap<>();
             res.put("numbers", numbers);
             res.put("data", users);
-//        String res_string = JSON.toJSONString(res);
-//        return res_string;
             return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), GlobalConfig.ResponseCode.SUCCESS.getDesc(), res);
         } catch (Exception e) {
             return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
