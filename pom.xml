@@ -49,11 +49,11 @@
         </dependency>
 
         <!--Activiti7-->
-<!--        <dependency>-->
-<!--            <groupId>org.activiti</groupId>-->
-<!--            <artifactId>activiti-spring-boot-starter</artifactId>-->
-<!--            <version>7.1.0.M4</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring-boot-starter</artifactId>
+            <version>7.1.0.M4</version>
+        </dependency>
 
         <dependency>
             <groupId>org.activiti.dependencies</groupId>
@@ -71,6 +71,17 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 </project>
