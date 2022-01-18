@@ -44,7 +44,7 @@ public class ProcessInstanceController {
     public AjaxResponse getInstances(@AuthenticationPrincipal UserInfoBean userInfoBean) {
         try {
             if (GlobalConfig.Test) {
-                securityUtil.logInAs("triniti");
+                securityUtil.logInAs("sino");
             }
 //            else {
 //                securityUtil.logInAs(userInfoBean.getUsername());
@@ -94,7 +94,7 @@ public class ProcessInstanceController {
                     .withProcessDefinitionKey(processDefinitionKey)
                     .withName(instanceName)
                     .withBusinessKey("自定义BusinessKey")
-//                    .withVariables("参数名", "参数值")
+//                    .withVariables("user", )
                     .build()
             );
 
@@ -152,7 +152,11 @@ public class ProcessInstanceController {
         }
     }
 
-    // 删除流程实例
+    /**
+     * 删除流程实例
+     * @param instanceID
+     * @return
+     */
     @GetMapping(value = "/deleteInstance")
     public AjaxResponse deleteInstance(@RequestParam("instanceID") String instanceID) {
         try {
@@ -172,7 +176,11 @@ public class ProcessInstanceController {
         }
     }
 
-    // 查询流程参数
+    /**
+     * 查询流程参数
+     * @param instanceID
+     * @return
+     */
     @GetMapping(value = "/variables")
     public AjaxResponse variables(@RequestParam("instanceID") String instanceID) {
         try {

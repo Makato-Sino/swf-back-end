@@ -32,6 +32,6 @@
     </select>
 
     <update id="editUser">
-        UPDATE user SET name = #{name}, address = #{address}, username = #{username}, password = #{password}, roles = #{roles} WHERE id = #{id}
+        UPDATE user SET name = #{name}, address = #{address}, password = #{password} WHERE id = #{id}
     </update>
 </mapper>
