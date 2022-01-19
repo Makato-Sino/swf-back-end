@@ -18,7 +18,6 @@ public class MenuController {
 
     @RequestMapping("/menus")
     public String getAllMenus() {
-//        System.out.println("访问成功！");
         HashMap<String, Object> data = new HashMap<>();
         List<Menu> menus = menuDao.getMenus();
         if (menus != null) {
