@@ -42,7 +42,29 @@ public class UserProcessDefinitionController {
                 hashMap.put("Tenant", pd.getTENANT_ID_());
                 listMap.add(hashMap);
             }
+            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), GlobalConfig.ResponseCode.SUCCESS.getDesc(), listMap);
+        } catch (Exception e) {
+            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
+        }
+    }
 
+    @GetMapping("/getAllTenantProcessDef")
+    public AjaxResponse getAllTenantProcessDef() {
+        try {
+
+            List<HashMap<String, Object>> listMap = new ArrayList<HashMap<String, Object>>();
+
+            List<ProcessDefinitionBean> list = processDefinitionDao.getAllTenantProcessDef();
+
+            for (ProcessDefinitionBean pd : list) {
+                HashMap<String, Object> hashMap = new HashMap<>();
+                hashMap.put("DeploymentID", pd.getDEPLOYMENT_ID_());
+                hashMap.put("Name", pd.getNAME_());
+                hashMap.put("Key", pd.getKEY_());
+                hashMap.put("Version", pd.getVERSION_());
+                hashMap.put("Tenant", pd.getTENANT_ID_());
+                listMap.add(hashMap);
+            }
             return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), GlobalConfig.ResponseCode.SUCCESS.getDesc(), listMap);
         } catch (Exception e) {
             return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
