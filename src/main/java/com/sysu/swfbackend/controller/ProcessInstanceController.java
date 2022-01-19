@@ -87,11 +87,11 @@ public class ProcessInstanceController {
                                      @RequestParam("processDefinitionKey") String processDefinitionKey,
                                      @RequestParam("instanceName") String instanceName) {
         try {
-            if (GlobalConfig.Test) {
-                securityUtil.logInAs("triniti");
-            } else {
+//            if (GlobalConfig.Test) {
+//                securityUtil.logInAs("triniti");
+//            } else {
                 securityUtil.logInAs(SecurityContextHolder.getContext().getAuthentication().getName());
-            }
+//            }
 
             ProcessInstance processInstance = processRuntime.start(ProcessPayloadBuilder
                     .start()
