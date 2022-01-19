@@ -8,6 +8,7 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -66,11 +67,11 @@ public class ProcessDefinitionController {
             }
 
             return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(),
-                                    "部署流程成功!",
+                                    GlobalConfig.ResponseCode.SUCCESS.getDesc(),
                                     deployment.getId() + ";" + fileName
             );
         } catch (Exception e) {
-            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), "部署流程失败!", e.toString());
+            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
         }
     }
 
@@ -84,6 +85,7 @@ public class ProcessDefinitionController {
             List<HashMap<String, Object>> listMap = new ArrayList<HashMap<String, Object>>();
 
             List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().list();
+
             for (ProcessDefinition pd : list) {
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("name", pd.getName());
@@ -93,14 +95,14 @@ public class ProcessDefinitionController {
                 hashMap.put("version", pd.getVersion());
                 listMap.add(hashMap);
             }
-            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), "获取流程定义成功!", listMap);
+            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), GlobalConfig.ResponseCode.SUCCESS.getDesc(), listMap);
         } catch (Exception e) {
-            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), "获取流程定义失败!", e.toString());
+            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
         }
     }
 
     /**
-     * 获取当前用户流程部署列表
+     * 获取流程部署列表
      * @return
      */
     @GetMapping(value = "/getDeployments")
@@ -118,9 +120,9 @@ public class ProcessDefinitionController {
 //                hashMap.put("Key", dep.getKey());
                 listMap.add(hashMap);
             }
-            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), "获取流程部署列表成功!", listMap);
+            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), GlobalConfig.ResponseCode.SUCCESS.getDesc(), listMap);
         } catch (Exception e) {
-            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), "获取流程部署列表失败!", e.toString());
+            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
         }
     }
 
@@ -133,9 +135,9 @@ public class ProcessDefinitionController {
     public AjaxResponse delDefinition(@RequestParam("pdID") String pdID) {
         try {
             repositoryService.deleteDeployment(pdID, true);
-            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), "删除流程定义成功!", null);
+            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), GlobalConfig.ResponseCode.SUCCESS.getDesc(), null);
         } catch (Exception e) {
-            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), "删除流程定义失败!", e.toString());
+            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
         }
     }
 }

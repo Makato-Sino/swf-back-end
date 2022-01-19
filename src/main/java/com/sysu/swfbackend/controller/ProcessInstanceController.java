@@ -11,9 +11,11 @@ import org.activiti.api.process.runtime.ProcessRuntime;
 import org.activiti.api.runtime.shared.query.Page;
 import org.activiti.api.runtime.shared.query.Pageable;
 import org.activiti.engine.RepositoryService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,6 +45,9 @@ public class ProcessInstanceController {
     @GetMapping(value = "/getInstances")
     public AjaxResponse getInstances(@AuthenticationPrincipal UserInfoBean userInfoBean) {
         try {
+            if (GlobalConfig.Test) {
+                securityUtil.logInAs("triniti");
+            }
 
             Page<ProcessInstance> processInstance = processRuntime.processInstances(Pageable.of(0, 100));
             List<ProcessInstance> list = processInstance.getContent();
@@ -58,7 +63,7 @@ public class ProcessInstanceController {
                 hashMap.put("processDefinitionKey", pi.getProcessDefinitionKey());
                 hashMap.put("startDate", pi.getStartDate());
                 hashMap.put("processDefinitionVersion", pi.getProcessDefinitionVersion());
-//                this.variables(pi.getId())
+//                hashMap.put("username", this.variables(pi.getId()).getObj().toString());
                 listMap.add(hashMap);
             }
 
@@ -66,7 +71,7 @@ public class ProcessInstanceController {
 
         } catch (Exception e) {
 
-            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
+            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.SUCCESS.getDesc(), e.toString());
 
         }
     }
@@ -183,11 +188,16 @@ public class ProcessInstanceController {
     @GetMapping(value = "/variables")
     public AjaxResponse variables(@RequestParam("instanceID") String instanceID) {
         try {
+            if (GlobalConfig.Test) {
+                securityUtil.logInAs("triniti");
+            }
+
             List<VariableInstance> variableInstances = processRuntime.variables(ProcessPayloadBuilder
                     .variables()
                     .withProcessInstanceId(instanceID)
                     .build()
             );
+
             return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(), GlobalConfig.ResponseCode.SUCCESS.getDesc(), variableInstances);
         } catch (Exception e) {
             return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
