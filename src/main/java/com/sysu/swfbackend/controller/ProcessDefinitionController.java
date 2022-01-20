@@ -38,11 +38,50 @@ public class ProcessDefinitionController {
      * @return
      */
 //    @PostMapping(value = "/uploadStreamAndDeployment")
+//    @RequestMapping(value = "/uploadStreamAndDeployment", method = RequestMethod.POST)
+//    public AjaxResponse uploadStreamAndDeployment(@AuthenticationPrincipal UserInfoBean userInfoBean,
+//                                                  @RequestParam("processFile") MultipartFile multipartFile,
+//                                                  @RequestParam("processName") String processName) {
+//        try {
+//
+//            // 获取文件名
+//            String fileName = multipartFile.getOriginalFilename();
+//            // 获取文件扩展名
+//            String extension = FilenameUtils.getExtension(fileName);
+//            // 获取文件字节流对象
+//            InputStream fileInputStream = multipartFile.getInputStream();
+//
+//            Deployment deployment = null;
+//            if (extension.equals("zip")) {
+//                ZipInputStream zip = new ZipInputStream(fileInputStream);
+//                deployment = repositoryService.createDeployment()
+//                        .addZipInputStream(zip)
+//                        .name(processName)
+//                        .tenantId(userInfoBean.getUsername())
+//                        .deploy();
+//            } else {
+//                deployment = repositoryService.createDeployment()
+//                        .addInputStream(fileName, fileInputStream)
+//                        .name(processName)
+//                        .tenantId(userInfoBean.getUsername())
+//                        .deploy();
+//            }
+//
+//            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(),
+//                                    GlobalConfig.ResponseCode.SUCCESS.getDesc(),
+//                                    deployment.getId() + ";" + fileName
+//            );
+//        } catch (Exception e) {
+//            return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
+//        }
+//    }
+
     @RequestMapping(value = "/uploadStreamAndDeployment", method = RequestMethod.POST)
-    public AjaxResponse uploadStreamAndDeployment(@AuthenticationPrincipal UserInfoBean userInfoBean,
+    public AjaxResponse uploadStreamAndDeployment(@RequestParam("username") String username,
                                                   @RequestParam("processFile") MultipartFile multipartFile,
                                                   @RequestParam("processName") String processName) {
         try {
+
             // 获取文件名
             String fileName = multipartFile.getOriginalFilename();
             // 获取文件扩展名
@@ -56,19 +95,19 @@ public class ProcessDefinitionController {
                 deployment = repositoryService.createDeployment()
                         .addZipInputStream(zip)
                         .name(processName)
-                        .tenantId(userInfoBean.getUsername())
+                        .tenantId(username)
                         .deploy();
             } else {
                 deployment = repositoryService.createDeployment()
                         .addInputStream(fileName, fileInputStream)
                         .name(processName)
-                        .tenantId(userInfoBean.getUsername())
+                        .tenantId(username)
                         .deploy();
             }
 
             return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.SUCCESS.getCode(),
-                                    GlobalConfig.ResponseCode.SUCCESS.getDesc(),
-                                    deployment.getId() + ";" + fileName
+                    GlobalConfig.ResponseCode.SUCCESS.getDesc(),
+                    deployment.getId() + ";" + fileName
             );
         } catch (Exception e) {
             return AjaxResponse.AjaxData(GlobalConfig.ResponseCode.ERROR.getCode(), GlobalConfig.ResponseCode.ERROR.getDesc(), e.toString());
